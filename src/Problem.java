@@ -1,30 +1,49 @@
 package src;
+import java.io.FileReader;
+
 import org.json.*;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.sun.javafx.geom.Point2D;
+
+import jdk.nashorn.internal.parser.JSONParser;
 
 
 
 public class Problem {
 	private String pathToJson = "../configs/basic_problem_1.json";
-	private Point2D[][] fields_limits;
-	private int[][] goalsPosts;
+	private Point2D[] fields_limits;
+	private Point2D[] goalsPosts;
 	private int [] goalDirection;
-	private Opponents opponents;
+	private Point2D[] opponents;
 	private int robot_radius;
 	private int theta_step;
 	private int pos_step;
 	
 	public Problem(String pathToJson) throws JSONException {
-		JSONObject obj = new JSONObject(pathToJson);
-		//fields_limits = obj.getInt("fields_limits");
-		//opponents.setX();
 		
+		JSONParser parser = new JSONParser();
+		 
+        try {
+ 
+            Object obj = parser.parse(new FileReader(
+                    "/Users/<username>/Documents/file1.txt"));
+ 
+            JSONObject jsonObject = (JSONObject) obj;
+		JSONObject obj = new JSONObject(pathToJson);
+		for (int i =0; i<2; i +=2) {
+			JSONArray tab = obj.getJSONArray("fields_limits");
+			System.out.println(tab);
+			fields_limits[i].setLocation(tab.getInt(i), tab.getInt(i+1)); 
+		}
+		String hello = JsonPath.read(json, "$.data.data2.value");
+
 		robot_radius = obj.getInt("robot_radius");
 		theta_step = obj.getInt("theta_step");
 		pos_step = obj.getInt("pos_step");
+		
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 
 	public String getPathToJson() {
@@ -35,19 +54,19 @@ public class Problem {
 		this.pathToJson = pathToJson;
 	}
 
-	public int[][] getFields_limits() {
+	public Point2D[] getFields_limits() {
 		return fields_limits;
 	}
 
-	public void setFields_limits(int[][] fields_limits) {
+	public void setFields_limits(Point2D[] fields_limits) {
 		this.fields_limits = fields_limits;
 	}
 
-	public int[][] getGoalsPosts() {
+	public Point2D[] getGoalsPosts() {
 		return goalsPosts;
 	}
 
-	public void setGoalsPosts(int[][] goalsPosts) {
+	public void setGoalsPosts(Point2D[] goalsPosts) {
 		this.goalsPosts = goalsPosts;
 	}
 
@@ -59,11 +78,11 @@ public class Problem {
 		this.goalDirection = goalDirection;
 	}
 
-	public int[] getOpponents() {
+	public Point2D[] getOpponents() {
 		return opponents;
 	}
 
-	public void setOpponents(int[] opponents) {
+	public void setOpponents(Point2D[] opponents) {
 		this.opponents = opponents;
 	}
 
