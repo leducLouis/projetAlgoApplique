@@ -3,7 +3,7 @@ import sys
 
 from goal import *
 
-class Problem:       
+class Problem:
     def __init__(self, data):
         # Checking cont
         mandatory_keys = ["field_limits", "robot_radius", "opponents", "theta_step", "pos_step", "goals"]
@@ -61,7 +61,7 @@ class Problem:
 
     def getOpponent(self, opp_id):
         return self.opponents[:,opp_id]
-    
+
     def getNbDefenders(self):
         if (self.defenders is None):
             return 0
@@ -69,3 +69,6 @@ class Problem:
 
     def getDefender(self, def_id):
         return self.defenders[:,def_id]
+
+    def getPosStep(self):
+        return self.pos_step
