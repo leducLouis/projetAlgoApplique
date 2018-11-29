@@ -2,11 +2,9 @@ package src;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import org.json.*;
-
 import com.sun.javafx.geom.Point2D;
 
-import jdk.nashorn.internal.parser.JSONParser;
+import  org.json.simple.JSONArray;
 
 
 
@@ -26,7 +24,7 @@ public class Problem {
         try {
  
             Object obj = parser.parse(new FileReader(
-                    "/Users/<username>/Documents/file1.txt"));
+                    "../configs/basic_problem_1.json"));
  
             JSONObject jsonObject = (JSONObject) obj;
 		JSONObject obj = new JSONObject(pathToJson);
