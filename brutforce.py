@@ -14,8 +14,6 @@ field_width = problem.getFieldWidth()
 field_height = problem.getFieldHeight()
 pos_step = problem.getPosStep()
 theta_step = problem.getThetaStep()
-goal_top = problem.getGoalTop()
-goal_bottom = problem.getGoalBottom()
 robot_radius = problem.getRobotRadius()
 
 for i in range (-(field_width/2) + pos_step, field_width, pos_step):
@@ -23,16 +21,15 @@ for i in range (-(field_width/2) + pos_step, field_width, pos_step):
         defender = {}
         defender[0] = i
         defender[1] = j
+        theta_step_tmp = theta_step
         for o in range (0, problem.getNbOpponents, 1):
-## TO DO : on verifie l'intersection opposant / chaque tir possible avec thetastep
-            for s_x in range (goal_top[0], goal_bottom[0], theta_step):
-                for s_y in range (goal_top[1], goal_bottom, theta_step):
-                    seg_end = []
-                    seg_end[0] = s_x
-                    seg_end[1] = s_y
-                    if segmentCircleIntersection(self.problem.getOpponent(o), seg_end, defender, robot_radius) is not None:
+            while theta_step_tmp < 1: ############## test pour le while, pas du tout sure de la condition
+                kick = segmentLineIntersection(problem.getOpponent(o), theta_step)
+                if kick is not None:
+                    if segmentCircleIntersection(self.problem.getOpponent(o), kick, defender, robot_radius) is not None:
                         with open('brutforceSolution.json', 'w', encoding='utf-8') as solution_file:
                             data["defenders"] = defender
+                theta_step_tmp += theta_step
 
 
 """
