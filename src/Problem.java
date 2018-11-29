@@ -1,5 +1,6 @@
 package src;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 import org.json.*;
 
@@ -11,15 +12,14 @@ import jdk.nashorn.internal.parser.JSONParser;
 
 public class Problem {
 	private String pathToJson = "../configs/basic_problem_1.json";
-	private Point2D[] fields_limits;
-	private Point2D[] goalsPosts;
-	private int [] goalDirection;
-	private Point2D[] opponents;
-	private int robot_radius;
-	private int theta_step;
-	private int pos_step;
+	private ArrayList<Point2D> fields_limits;
+	private ArrayList<Goal> goals;
+	private ArrayList<Point2D> opponents;
+	private double robot_radius;
+	private double theta_step;
+	private double pos_step;
 	
-	public Problem(String pathToJson) throws JSONException {
+	public static Problem getInstance(String pathToJson) throws JSONException {
 		
 		JSONParser parser = new JSONParser();
 		 
