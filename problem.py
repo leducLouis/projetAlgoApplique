@@ -78,3 +78,9 @@ class Problem:
 
     def getGoalBottom(self):
         return self.goals[0][1]
+
+    def getThetaStep(self):
+        return self.theta_step
+
+    def getRobotRadius(self):
+        return self.robot_radius
