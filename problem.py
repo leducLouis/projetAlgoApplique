@@ -72,3 +72,9 @@ class Problem:
 
     def getPosStep(self):
         return self.pos_step
+
+    def getGoalTop(self):
+        return self.goals[0][0]
+
+    def getGoalBottom(self):
+        return self.goals[0][1]
