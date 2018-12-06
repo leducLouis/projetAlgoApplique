@@ -6,6 +6,12 @@ from board import *
 from geometry import *
 from problem import *
 
+"""
+
+TOUT A REFAIRE, BRUTFORCE A EFFECTUER SUR LE GRAPH
+POUR TROUVER UN DOMINATING SET
+
+"""
 problem_path = sys.argv[1]
 with open(problem_path) as problem_file:
     problem = Problem(json.load(problem_file))
