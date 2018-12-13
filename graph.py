@@ -17,6 +17,7 @@ class Graph:
             problem_path = problem_path
             with open(problem_path) as problem_file:
                 problem = Problem(json.load(problem_file))
+                print("hey")
 
             field_center = problem.getFieldCenter()
             field_width = problem.getFieldWidth()
@@ -36,11 +37,14 @@ class Graph:
                     theta_step_tmp = theta_step
                     for o in range (0, problem.getNbOpponents(), 1):
                         while theta_step_tmp < 1: ############## test pour le while, pas du tout sure de la condition
-                            kick = segmentLineIntersection(problem.getOpponent(o)[0],problem.getOpponent(o)[1], problem.field_limits[0], problem.field_limits[1])
-                            if kick is not None:
-                                if segmentCircleIntersection(self.problem.getOpponent(o), kick, defender, robot_radius) is not None:
-                                    with open('graph.json', 'w', encoding='utf-8') as solution_file:
-                                        data["defenders"] = defender
+                            #print (problem.field_limits)
+                            #kick = segmentLineIntersection(problem.getOpponent(o), problem.field_limits[0][0],problemproblem.field_limits[0][1])
+                            #if kick is not None:
+                            #i = 0
+                            #for j in range (0,5,1)
+                            if segmentCircleIntersection(problem.getOpponent(o),problem.field_limits[0], defender, robot_radius) is not None:
+                                with open('graph.json', 'w', encoding='utf-8') as solution_file:
+                                    data["defenders"] = defender
                             theta_step_tmp += theta_step
 
 
